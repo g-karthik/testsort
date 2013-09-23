@@ -1,0 +1,124 @@
+#! /bin/bash
+
+if test "$1" == "-h"
+then
+        echo "usage: testsort -i init [50000] -r res [10000] -f fin [100000] -a avg [10] -o filename [out.txt] -s heap merge quick bubble [bubble quick], where default values are specified by []"
+
+        exit
+
+fi
+        init=50000
+        res=10000
+        fin=100000
+        avg=10
+        filename=out.txt
+        sort=("bubble" "quick")
+
+        while (( $# >= 1 ))
+        do
+                if [ "$1" == "-i" ]
+                then
+                        shift;
+                        init=$1
+                        shift;
+                        continue;
+                fi
+                if [ "$1" == "-r" ]
+                then
+                        shift;
+                        res=$1
+                        shift;
+                        continue;
+                fi
+                if [ "$1" == "-a" ]
+                then
+                        shift;
+                        avg=$1
+                        shift;
+                        continue;
+                fi
+                if [ "$1" == "-f" ]
+                then
+                        shift;
+                        fin=$1
+                        shift;
+                        continue;
+                fi
+                if [ "$1" == "-o" ]
+                then
+                        shift;
+                        filename=$1
+                        shift;
+                        continue;
+                fi
+                if [ "$1" == "-s" ]
+                then
+                        shift;
+                        ctr=0
+                        while (( $# >= 1 )); do
+                        sort[(( ctr ))]=$1
+                        (( ctr += 1 ))
+                        shift;
+                        done
+                        break;
+                fi
+        done
+        
+        touch $filename
+
+        if (( init>=fin ))
+        then
+                echo "Error! Final value and initial value incompatible!"
+                ./testsort -h
+                exit
+        fi
+
+        while (( init<=fin ))
+        do
+                touch random.txt
+                for (( i = 0; i < init; i++ ))
+                do
+                echo "$RANDOM" >> random.txt
+                done
+
+                val=(0 0 0 0)
+                for (( i=0; i<avg; i++ ))
+                do
+                        for (( j=0; j < ${#sort[@]}; j++ ))
+                        do
+                                (( val[j] += `./${sort[j]} random.txt $init` ))
+                        done
+                done
+
+                echo -n $init >> $filename
+                for (( i=0; i < ${#sort[@]}; i++ ))
+                do
+                        (( average[i] = val[i]/avg ))
+                        echo -n "" ${average[i]} >> $filename
+                done
+                echo >> $filename
+
+                (( init = init + res ))
+                rm random.txt
+        done
+                str=""
+                touch output.png
+                for (( i=2; i < ${#sort[@]}+2; i++ ))
+                do
+                if (( i==${#sort[@]}+1 ))
+                then
+                str+="\"$filename\" using 1:$i title \"${sort[i-2]}\" with lines"
+                else
+                str+="\"$filename\" using 1:$i title \"${sort[i-2]}\" with lines,"
+                fi
+                done
+
+        echo "  set term png;
+                set output \"output.png\";
+                set xlabel \"Number of Random Numbers\"
+                set ylabel \"Time in microseconds\"
+                plot $str
+             " | gnuplot
+
+                echo "Output Image Is Present In The File output.png!"
+
