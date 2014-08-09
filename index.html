@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="testsort : A custom-made Linux command that plots the increase in the running times of different sorting algorithms with an increase in input size.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>testsort</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/g-karthik/testsort">View on GitHub</a>
+
+          <h1 id="project_title">testsort</h1>
+          <h2 id="project_tagline">A custom-made Linux command that plots the increase in the running times of different sorting algorithms with an increase in input size.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/g-karthik/testsort/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/g-karthik/testsort/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p><em>testsort</em> is a custom-made Linux command created for the Systems Programming Lab course at IIT Patna. The command takes the following input:</p>
+
+<ul>
+<li><p>An initial value <em>init</em> using the <code>-i</code> option</p></li>
+<li><p>A resolution value <em>res</em> using the <code>-r</code> option</p></li>
+<li><p>A final value <em>fin</em> using the <code>-f</code> option</p></li>
+<li><p>An integer <em>avg</em> using the <code>-a</code> option</p></li>
+<li><p>A file name using the <code>-o</code> option</p></li>
+<li><p>Sorting routines using the <code>-s</code> option</p></li>
+</ul><p>The sorting routines mentioned in the command may be one, two, three or all four of the mentioned routines in the previous example.</p>
+
+<h1>
+<a name="what-the-command-does" class="anchor" href="#what-the-command-does"><span class="octicon octicon-link"></span></a>What the command does</h1>
+
+<p>Suppose the user enters the following on the command-line:</p>
+
+<p><code>./testsort -i 50000 -r 10000 -f 100000 -a 10 -o output.txt -s heap merge quick</code></p>
+
+<p>The command does the following in response:</p>
+
+<p>1) Generates a file containing 50000 random numbers</p>
+
+<p>2) Sorts the number 10 times using heap, merge and quick sort routines (available as C executables and internally called by <em>testsort</em>)</p>
+
+<p>3) Computes the average sorting times required by the different sorting routines</p>
+
+<p>4) Generates a file containing 50000 + 10000 = 60000 random numbers and repeats the previous steps; continues like this till the above procedure is done for a file containing 100000 random numbers</p>
+
+<p>5) Writes the output of all the above runs (i.e., the average sorting times) in a file named <em>output.txt</em>; the write operation is done in a format recognizable by <em>gnuplot</em>, a GNU plotting utility</p>
+
+<p>6) Renders using <em>gnuplot</em> the average sorting times required by the sort routines for the different sample sizes (with X-Axis marked from 50000 to 100000 separated by 10000 and Y-Axis marked with time values)</p>
+
+<p>The image is rendered in the file <em>output.png</em>.</p>
+
+<h1>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>To find out the parameters to the command and the order in case you forget them, run:
+<code>./testsort -h</code></p>
+
+<p><code>usage: testsort -i init [50000] -r res [10000] -f fin [100000] -a avg [10] -o filename [out.txt] -s heap merge quick bubble [bubble quick] where default values are specified by []</code></p>
+
+<h1>
+<a name="note" class="anchor" href="#note"><span class="octicon octicon-link"></span></a>NOTE</h1>
+
+<p>Before trying to run the command, run the following commands:</p>
+
+<p><code>gcc quicksort.c -o quick</code></p>
+
+<p><code>gcc mergesort.c -o merge</code></p>
+
+<p><code>gcc heapsort.c -o heap</code></p>
+
+<p><code>gcc bubblesort.c -o bubble</code></p>
+
+<p>This builds the executables for the sorting algorithms, which are used by the command script.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">testsort maintained by <a href="https://github.com/g-karthik">g-karthik</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
