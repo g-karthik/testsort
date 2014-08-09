@@ -36,14 +36,14 @@
 
 <p><em>testsort</em> is a custom-made Linux command created for the Systems Programming Lab course at IIT Patna. The command takes the following input:</p>
 
-<ul>
+<ol>
 <li><p>An initial value <em>init</em> using the <code>-i</code> option</p></li>
 <li><p>A resolution value <em>res</em> using the <code>-r</code> option</p></li>
 <li><p>A final value <em>fin</em> using the <code>-f</code> option</p></li>
 <li><p>An integer <em>avg</em> using the <code>-a</code> option</p></li>
 <li><p>A file name using the <code>-o</code> option</p></li>
 <li><p>Sorting routines using the <code>-s</code> option</p></li>
-</ul><p>The sorting routines mentioned in the command may be one, two, three or all four of the mentioned routines in the previous example.</p>
+</ol><p>The sorting routines mentioned in the command may be one, two, three or all four of the mentioned routines in the previous example.</p>
 
 <h1>
 <a name="what-the-command-does" class="anchor" href="#what-the-command-does"><span class="octicon octicon-link"></span></a>What the command does</h1>
@@ -54,25 +54,22 @@
 
 <p>The command does the following in response:</p>
 
-<p>1) Generates a file containing 50000 random numbers</p>
-
-<p>2) Sorts the number 10 times using heap, merge and quick sort routines (available as C executables and internally called by <em>testsort</em>)</p>
-
-<p>3) Computes the average sorting times required by the different sorting routines</p>
-
-<p>4) Generates a file containing 50000 + 10000 = 60000 random numbers and repeats the previous steps; continues like this till the above procedure is done for a file containing 100000 random numbers</p>
-
-<p>5) Writes the output of all the above runs (i.e., the average sorting times) in a file named <em>output.txt</em>; the write operation is done in a format recognizable by <em>gnuplot</em>, a GNU plotting utility</p>
-
-<p>6) Renders using <em>gnuplot</em> the average sorting times required by the sort routines for the different sample sizes (with X-Axis marked from 50000 to 100000 separated by 10000 and Y-Axis marked with time values)</p>
-
-<p>The image is rendered in the file <em>output.png</em>.</p>
+<ol>
+<li><p>Generates a file containing 50000 random numbers</p></li>
+<li><p>Sorts the number 10 times using heap, merge and quick sort routines (available as C executables and internally called by <em>testsort</em>)</p></li>
+<li><p>Computes the average sorting times required by the different sorting routines</p></li>
+<li><p>Generates a file containing 50000 + 10000 = 60000 random numbers and repeats the previous steps; continues like this till the above procedure is done for a file containing 100000 random numbers</p></li>
+<li><p>Writes the output of all the above runs (i.e., the average sorting times) in a file named <em>output.txt</em>; the write operation is done in a format recognizable by <em>gnuplot</em>, a GNU plotting utility</p></li>
+<li><p>Renders using <em>gnuplot</em> the average sorting times required by the sort routines for the different sample sizes (with X-Axis marked from 50000 to 100000 separated by 10000 and Y-Axis marked with time values)</p></li>
+</ol><p>The image is rendered in the file <em>output.png</em>.</p>
 
 <h1>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
 
 <p>To find out the parameters to the command and the order in case you forget them, run:
 <code>./testsort -h</code></p>
+
+<p>The output would be as follows:</p>
 
 <p><code>usage: testsort -i init [50000] -r res [10000] -f fin [100000] -a avg [10] -o filename [out.txt] -s heap merge quick bubble [bubble quick] where default values are specified by []</code></p>
 
